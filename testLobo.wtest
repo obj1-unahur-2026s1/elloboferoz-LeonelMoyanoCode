@@ -1,0 +1,49 @@
+import personajes.*
+
+describe "La aventura del Lobo que se come a la Abuelita y a Caperucita" {
+  
+  test "El lobo se come a la abuela, a caperucita y también al cazador" {
+    feroz.crisis()
+    canasta.reiniciar()
+    
+    feroz.correr()
+    feroz.correr()
+    feroz.comer(abuelita)
+    canasta.perderManzana()
+    feroz.comer(caperucita)
+    feroz.comer(cazador)
+    
+    assert.equals(26.1, feroz.peso())
+    assert.equals(true, feroz.estaSaludable())
+  }
+  
+  test "El cazador le da un susto y el lobo vuelve a su peso inicial flaco" {
+    feroz.crisis()
+    canasta.reiniciar()
+    
+    feroz.correr()
+    feroz.correr()
+    feroz.comer(abuelita)
+    canasta.perderManzana()
+    feroz.comer(caperucita)
+    cazador.provocarCrisis(feroz)
+    
+    assert.equals(10, feroz.peso())
+    assert.equals(false, feroz.estaSaludable())
+  }
+  
+  test "El cazador adiestra al lobo hasta dejarlo más desnutrido que antes" {
+    feroz.crisis()
+    canasta.reiniciar()
+    
+    feroz.correr()
+    feroz.correr()
+    feroz.comer(abuelita)
+    canasta.perderManzana()
+    feroz.comer(caperucita)
+    cazador.adiestrar(feroz)
+    
+    assert.equals(7.1, feroz.peso())
+    assert.equals(false, feroz.estaSaludable())
+  }
+}
